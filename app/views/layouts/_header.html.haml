@@ -13,7 +13,16 @@
         = link_to courses_path, class: "nav-link #{'active fw-bold' if current_page?(courses_path)}" do
           .fa.fa-file
           Courses
+        = link_to new_course_path, class: "nav-link #{'active fw-bold' if current_page?(new_course_path)}" do
+          .fa.fa-plus
+          Add new course
       %ul.navbar-nav.ms-auto
+        = form_tag(courses_path, method: :get) do
+          .input-group
+            = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "search", class: 'form-control'
+            %span.input-group-append
+              %button.btn.btn-primary.btn-sm{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
         - if current_user
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}

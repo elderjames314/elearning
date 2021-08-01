@@ -1,1 +1,69 @@
-= link_to "Course", courses_path, class: 'btn btn-button'
+.jumbotron
+  .display-4
+    What do you want to learn today
+    
+    
+  .p-4
+  
+  .form-inline.my-2.my-lg-0
+    = form_tag(courses_path, method: :get) do
+      .input-group
+        = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control'
+        %span.input-group-append
+          %button.btn.btn.primary.btn.sm{:type => "submit"}
+            %span.fa.fa-search{"aria-hidden" => "true"}
+  
+  .p-2
+  
+  .card-group
+    .card.card-body
+      %h1
+        .fa.fa-graduation-cap
+      = Course.count
+      online courses
+      .row 
+      Explore a varietuy of fresh topics
+    .card.card-body
+      %h1
+        .fa.fa-user
+      = Course.distinct.count(:user_id)
+      expert intructors
+      .row
+      Find the right instructor for you
+    .card.card-body
+      %h1
+        .fa.fa-user-graduate
+      = User.count 
+      active learners
+      .row
+      Join the knowledge sharing community
+    .card.card-body
+      %h1
+        .fa.fa-infinity
+      Lifetime access
+      .row 
+      Learn on your schedule
+  
+  %hr
+  %h2
+    Popular courses 
+  .card-columns
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+  
+  %hr
+  %h2
+    Latest courses 
+  .card-columns
+    - @latest_course.each do |course|
+      = render 'courses/course', course: course
+    
+  %hr
+  %h2
+    Most rated courses 
+  .card-columns
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+  
+
+  
