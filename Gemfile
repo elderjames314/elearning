@@ -54,3 +54,7 @@ end
 
 gem "haml-rails", "~> 2.0"
 gem 'simple_form'
+gem 'font-awesome-sass', '~> 4.4.0'
+gem 'sprockets', '~> 3.7.2'
+gem 'faker'
+gem 'devise'
